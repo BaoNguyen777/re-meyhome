@@ -1,0 +1,1 @@
+Facebook post iframes can be blocked by Facebook/browser embedding policies. Use an external-link card rather than a raw iframe to keep the page reliable.
