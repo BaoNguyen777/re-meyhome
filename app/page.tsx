@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUpRight, Compass, Instagram, Menu, MoveRight, Play, Plus, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Instagram, Menu, MoveRight, Play, X } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -15,13 +15,14 @@ const images = {
 
 function Nav() {
   const [open, setOpen] = useState(false);
+  const items = [["Story", "#story"], ["Collection", "#collection"], ["Lifestyle", "#lifestyle"], ["Contact", "#contact"]];
   return <>
     <header className="nav">
       <a href="#top" className="brand"><span>MEY</span><small>HOMES</small></a>
-      <nav className="desktop-nav"><a href="#story">The story</a><a href="#collection">Collection</a><a href="#lifestyle">Lifestyle</a><a href="#contact">Contact</a></nav>
+      <nav className="desktop-nav">{items.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</nav>
       <button className="menu-btn" onClick={() => setOpen(true)} aria-label="Open menu"><Menu size={20}/></button>
     </header>
-    {open && <motion.div initial={{opacity:0}} animate={{opacity:1}} className="mobile-menu"><button onClick={()=>setOpen(false)}><X/></button><div>{["Story","Collection","Lifestyle","Contact"].map((x,i)=><a key={x} href={["#story","#collection","#lifestyle","#contact"][i]} onClick={()=>setOpen(false)}>{x}<ArrowUpRight size={20}/></a>)}</div></motion.div>}
+    {open && <motion.div initial={{opacity:0}} animate={{opacity:1}} className="mobile-menu"><button onClick={()=>setOpen(false)} aria-label="Close menu"><X/></button><div>{items.map(([label, href])=><a key={href} href={href} onClick={()=>setOpen(false)}>{label}<ArrowUpRight size={20}/></a>)}</div></motion.div>}
   </>;
 }
 
@@ -57,8 +58,8 @@ export default function Home() {
 
     <section id="lifestyle" className="lifestyle"><div className="lifestyle-bg" style={{backgroundImage:`url(${images.sunset})`}}/><div className="lifestyle-overlay"/><div className="lifestyle-content"><div className="section-kicker">04 / THE LIFESTYLE</div><h2>Life,<br/><em>composed differently.</em></h2><p>Morning light. Barefoot afternoons. Dinners that last longer than expected. The luxury is in having nowhere else to be.</p><button><Play size={14} fill="currentColor"/> PLAY THE STORY</button></div></section>
 
-    <section className="social section-cream"><div className="section-kicker dark">05 / FROM THE COMMUNITY</div><div className="social-head"><h2>See it through<br/><em>their eyes.</em></h2><p>Follow the conversation around the destination.</p></div><div className="facebook-card"><div className="fb-top"><span>MEYHOMES</span><span>FACEBOOK</span></div><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FMeyhomesCapitalPQ%2Fposts%2Fpfbid0a9phjjWUJwXft9xGXtAY1RrcyVv1b4ZuoxKHQTtTBuBwPfNmhMgPsFNWK5Xvsbjl&show_text=true&width=500" width="500" height="709" style={{border:"none",overflow:"hidden"}} scrolling="no" frameBorder="0" allowFullScreen title="Meyhomes Facebook post" /></div></section>
+    <section className="social section-cream"><div className="section-kicker dark">05 / FROM THE COMMUNITY</div><div className="social-head"><h2>See it through<br/><em>their eyes.</em></h2><p>Follow the conversation around the destination.</p></div><div className="facebook-card"><div className="fb-top"><span>MEYHOMES</span><span>FACEBOOK</span></div><a className="facebook-photo-link" href="https://www.facebook.com/MeyhomesCapitalPQ/" target="_blank" rel="noopener noreferrer" aria-label="Open Meyhomes Facebook page"><img src="/images/fbpost.jpg" alt="Meyhomes Facebook post" /></a><a className="facebook-open" href="https://www.facebook.com/MeyhomesCapitalPQ/" target="_blank" rel="noopener noreferrer">OPEN ON FACEBOOK <ArrowUpRight size={16}/></a></div></section>
 
-    <section id="contact" className="contact section-dark"><div className="section-kicker">06 / BEGIN A CONVERSATION</div><div className="contact-wrap"><h2>Ready to see<br/><em>what's next?</em></h2><p>Speak with our team and discover the experience that fits your perspective.</p><a href="mailto:hello@meyhomes.example">Start a conversation <ArrowUpRight size={18}/></a></div><footer><div className="brand"><span>MEY</span><small>HOMES</small></div><div><a href="#top">Instagram <Instagram size={14}/></a><a href="#top">Facebook <ArrowUpRight size={14}/></a></div><span>© 2026 MEYHOMES / DIGITAL EXPERIENCE CONCEPT</span></footer></section>
+    <section id="contact" className="contact section-dark"><div className="section-kicker">06 / BEGIN A CONVERSATION</div><div className="contact-wrap"><h2>Ready to see<br/><em>what's next?</em></h2><p>Speak with our team and discover the experience that fits your perspective.</p><a href="mailto:hello@meyhomes.example">Start a conversation <ArrowUpRight size={18}/></a></div><footer><div className="brand"><span>MEY</span><small>HOMES</small></div><div><a href="#top">Instagram <Instagram size={14}/></a><a href="https://www.facebook.com/MeyhomesCapitalPQ/" target="_blank" rel="noopener noreferrer">Facebook <ArrowUpRight size={14}/></a></div><span>© 2026 MEYHOMES / DIGITAL EXPERIENCE CONCEPT</span></footer></section>
   </main>;
 }
