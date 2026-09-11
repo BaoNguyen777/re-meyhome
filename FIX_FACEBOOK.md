@@ -1,0 +1,1 @@
+The page no longer needs an iframe for Facebook. Use the `FacebookLink` component for a stable external link. This avoids `www.facebook.com refused to connect` caused by iframe/embed blocking.
